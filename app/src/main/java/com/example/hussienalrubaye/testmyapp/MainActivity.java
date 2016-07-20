@@ -20,6 +20,7 @@ int Attemp=0;
         Attemp++; //number of attemps
         if (Attemp>=3){
             Toast.makeText(getApplicationContext(),"to many try",Toast.LENGTH_LONG).show();
+            return;
         }
         if (UserName.getText().toString().equals("admin") && Password.getText().toString().equals("admin") )
 

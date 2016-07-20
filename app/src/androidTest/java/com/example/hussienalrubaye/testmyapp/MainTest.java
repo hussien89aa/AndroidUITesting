@@ -21,41 +21,33 @@ public class MainTest {
     @Rule
     public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class);
 
-    @Test
-    public void testUiDevice() throws RemoteException {
-        UiDevice device = UiDevice.getInstance(
-                InstrumentationRegistry.getInstrumentation());
-        if (device.isScreenOn()) {
-            device.setOrientationLeft();
-            device.openNotification();
-        }
-    }
+
 
     @Test
     public void testUiAutomatorAPI() throws UiObjectNotFoundException, InterruptedException {
         UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+while (true)
+{
+            //enter username
+            UiSelector usernameSelector = new UiSelector().className("android.widget.EditText").instance(0);
+            UiObject usernameWidget = device.findObject(usernameSelector);
+            usernameWidget.setText("admin1");
+            Thread.sleep(2000);
 
-    //enter username
-    UiSelector usernameSelector = new UiSelector().className("android.widget.EditText").instance(0);
-    UiObject usernameWidget = device.findObject(usernameSelector);
-    usernameWidget.setText("admin");
-    Thread.sleep(2000);
+            //enter Password
+            UiSelector PasswordSelector = new UiSelector().className("android.widget.EditText").instance(1);
+            UiObject PasswordWidget = device.findObject(PasswordSelector);
+            PasswordWidget.setText("admin");
+            Thread.sleep(2000);
 
-    //enter Password
-    UiSelector PasswordSelector = new UiSelector().className("android.widget.EditText").instance(1);
-    UiObject PasswordWidget = device.findObject(PasswordSelector);
-    PasswordWidget.setText("admin");
-    Thread.sleep(2000);
+            UiSelector buLoginSelector = new UiSelector().className("android.widget.Button").text("LOGIN").clickable(true);
+            UiObject buLoginWidget = device.findObject(buLoginSelector);
+            buLoginWidget.click();
 
-    UiSelector buLoginSelector = new UiSelector().className("android.widget.Button").text("LOGIN").clickable(true);
-    UiObject buLoginWidget = device.findObject(buLoginSelector);
-        buLoginWidget.click();
-
-    Thread.sleep(2000);
-
+            Thread.sleep(2000);
+}
 
     }
-
 
 }
 
